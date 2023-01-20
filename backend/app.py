@@ -7,8 +7,8 @@ CORS(app)
 @app.route('/addUser/<userName>/<password>', methods=['POST'], strict_slashes=False)
 def addUser(userName=None, password=None):
     print(userName, password)
-    response = newUserToDB(userName, password)
-    return response
+    newUserToDB(userName, password)
+    return "ok"
 
 @app.route('/getUser/<userName>', methods=['GET'], strict_slashes=False)
 def getUser(userName=None):
