@@ -4,10 +4,8 @@ from vul import newUserToDB, getUserFromDB
 app = Flask(__name__)
 CORS(app)
 
-@app.route('/addUser', methods=['POST'], strict_slashes=False)
-def addUser():
-    userName = request.json['userName']
-    password = request.json['password']
+@app.route('/addUser/<userName>/<password>', methods=['POST'], strict_slashes=False)
+def addUser(userName=None, password=None):
     print(userName, password)
     response = newUserToDB(userName, password)
     return response

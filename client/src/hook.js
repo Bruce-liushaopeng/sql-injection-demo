@@ -20,10 +20,9 @@ function useInputHook() {
     }
 
     const submitNewUser = () => {
-        const body = { userName, password }
-        console.log(body);
-        axios.post('http://localhost:5000/addUser', body)
+        axios.post('http://localhost:5000/addUser/'+ userName + '/' + password)
         .then(res => {
+            setNameList([])
             alert(res.data)
         })
         .catch(() => {
