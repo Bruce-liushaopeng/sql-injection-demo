@@ -6,14 +6,13 @@ CORS(app)
 
 @app.route('/addUser', methods=['POST'], strict_slashes=False)
 def addUser():
-    firstName = request.json['firstName']
-    lastName = request.json['lastName']
-    print(firstName, lastName)
-    response = newUserToDB(firstName, lastName)
+    userName = request.json['userName']
+    password = request.json['password']
+    print(userName, password)
+    response = newUserToDB(userName, password)
     return response
 
-@app.route('/getUser', methods=['GET'], strict_slashes=False)
-def getUser():
-    firstName = request.json['firstName']
-    response = getUserFromDB(firstName)
-    return response
+@app.route('/getUser/<userName>', methods=['GET'], strict_slashes=False)
+def getUser(userName=None):
+    respond = getUserFromDB(userName)
+    return respond

@@ -1,38 +1,47 @@
 import { useState, useEffect } from 'react';
 import axios from 'axios'
 function useInputHook() {
-    const [firstName, setFirstName] = useState('');
-    const [lastName, setLastName] = useState('')
+    const [userName, setuserName] = useState('');
+    const [password, setpassword] = useState('');
+    const [userNameForView, setUserNameForView] = useState('');
     const [nameList, setNameList] = useState([]);
 
-    const firstNameOnChange = (e) => {
-        setFirstName(e.target.value);
+    const userNameOnChange = (e) => {
+        setuserName(e.target.value);
     }
 
-    const lastNameOnChange = (e) => {
-        setLastName(e.target.value);
+    const passwordOnChange = (e) => {
+        setpassword(e.target.value);
     }
-    
-    useEffect( () => {
-        console.log(firstName, lastName, nameList)
-    }, [firstName, lastName, nameList])
+
+    const userNameForViewOnChange = (e) => {
+        console.log(userNameForView);
+        setUserNameForView(e.target.value);
+    }
 
     const submitNewUser = () => {
-        console.log("handlesubmit invoked");
-        const body = { firstName, lastName }
+        const body = { userName, password }
         console.log(body);
         axios.post('http://localhost:5000/addUser', body)
         .then(res => {
-            console.log(res)
-            setNameList(res.data)
-            console.log(res.data)
+            alert(res.data)
         })
         .catch(() => {
             console.log("post error on FrontEnd")
         })
     }
 
-    return {firstName, lastName, nameList, firstNameOnChange, lastNameOnChange, submitNewUser}
+    const handleViewClick = () => {
+        axios.get('http://localhost:5000/getUser/' + userNameForView)
+        .then(res => {
+            setNameList(res.data)
+        })
+        .catch((res) => {
+            console.log("post error on FrontEnd")
+        })
+    }
+
+    return {userName, password, userNameForView, nameList, userNameOnChange, userNameForViewOnChange, passwordOnChange, submitNewUser, handleViewClick}
 }
 
 export default useInputHook;

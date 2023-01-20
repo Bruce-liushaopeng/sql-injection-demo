@@ -5,8 +5,8 @@ print("Open db succesfullly")
 
 conn.execute("""
     CREATE TABLE USER
-         (FirstName           TEXT    PRIMARY KEY,
-         LastName             TEXT    NOT NULL);
+         (userName           TEXT    PRIMARY KEY,
+         password             TEXT    NOT NULL);
 """)
 
 print("db create success")
