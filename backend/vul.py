@@ -35,7 +35,7 @@ def getUserFromDB(firstName):
 
 if __name__ == '__main__':
     conn = sqlite3.connect('sample.db')
-    userInput = f"123' or firstName = 'hello"
+    userInput = f"123' or 'hello' = 'hello"
     curser = conn.execute(f"SELECT FirstName, LastName from USER where firstName = '{userInput}'")
     updatedDB = []
     for row in curser:

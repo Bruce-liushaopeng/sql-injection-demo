@@ -17,7 +17,7 @@ function useInputHook() {
         console.log(firstName, lastName, nameList)
     }, [firstName, lastName, nameList])
 
-    const handleSubmit = () => {
+    const submitNewUser = () => {
         console.log("handlesubmit invoked");
         const body = { firstName, lastName }
         console.log(body);
@@ -32,7 +32,7 @@ function useInputHook() {
         })
     }
 
-    return {firstName, lastName, nameList, firstNameOnChange, lastNameOnChange, handleSubmit}
+    return {firstName, lastName, nameList, firstNameOnChange, lastNameOnChange, submitNewUser}
 }
 
 export default useInputHook;
