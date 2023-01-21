@@ -31,8 +31,10 @@ def get_user_from_db(username: str) -> list:
     for row in curser:
         data = [row[0], row[1]]
         userInfo.append(data)
-        print("ID = ", row[0])
-        print("userName = ", row[1])
+        print("userName = ", row[0])
+        print("password = ", row[1])
+    
+    print(userInfo)
 
     conn.close()
     return userInfo
