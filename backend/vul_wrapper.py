@@ -1,7 +1,7 @@
 from vul import add_user_to_db, get_user_from_db
 
 
-def add_user(username: str, password: str) -> str:
+def add_user_wrapper(username: str, password: str) -> str:
     """
     Adds a user to the system.
     Wrapper for database system function.
@@ -14,7 +14,7 @@ def add_user(username: str, password: str) -> str:
     return add_user_to_db(username, password)
 
 
-def get_user(username: str) -> list:
+def get_user_wrapper(username: str) -> list:
     """
     Retrieves a user from the system.
     Wrapper for database system function.

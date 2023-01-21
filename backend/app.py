@@ -1,6 +1,6 @@
 from flask import Flask, request, jsonify
 from flask_cors import CORS
-import vul_wrapper as v
+from vul_wrapper import add_user_wrapper, get_user_wrapper
 
 app = Flask(__name__)
 CORS(app)
@@ -17,7 +17,7 @@ def add_user(username=None, password=None):
     """
 
     print(username, password)
-    v.add_user(username, password)
+    add_user_wrapper(username, password)
     return "ok"
 
 
@@ -29,5 +29,5 @@ def get_user(username=None) -> list:
     :param username: The username of the user to find
     :return: The user information
     """
-    respond = v.get_user(username)
+    respond = get_user_wrapper(username)
     return respond
