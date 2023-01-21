@@ -23,7 +23,9 @@ function useInputHook() {
         axios.post('http://localhost:5000/addUser/'+ userName + '/' + password)
         .then(res => {
             setNameList([])
-            alert(res.data)
+            alert("New user " + userName + " add success")
+            setuserName("")
+            setpassword("")
         })
         .catch(() => {
             console.log("post error on FrontEnd")
