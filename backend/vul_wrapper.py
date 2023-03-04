@@ -1,4 +1,5 @@
 from vul import add_user_to_db, get_user_from_db
+import user_db_handler
 
 
 def add_user_wrapper(username: str, password: str) -> str:
@@ -11,7 +12,7 @@ def add_user_wrapper(username: str, password: str) -> str:
     :return: Success message
     """
 
-    return add_user_to_db(username, password)
+    return add_user_to_db(username, password, user_db_handler)
 
 
 def get_user_wrapper(username: str) -> list:
@@ -23,4 +24,4 @@ def get_user_wrapper(username: str) -> list:
     :return: Any user information retrieved
     """
 
-    return get_user_from_db(username)
+    return get_user_from_db(username, user_db_handler)

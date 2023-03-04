@@ -1,7 +1,7 @@
-import sqlite3
+import user_db_handler
 
 
-def add_user_to_db(username: str, password: str) -> str:
+def add_user_to_db(username: str, password: str, handler: user_db_handler) -> str:
     """
     Adds a new user to the database
 
@@ -9,14 +9,11 @@ def add_user_to_db(username: str, password: str) -> str:
     :param password: The password of the user
     :return: Add user message
     """
-    conn = sqlite3.connect('sample.db')
-    conn.execute(f"INSERT INTO USER ( userName, password) VALUES ('{username}', '{password}')")
-    conn.commit()
-    conn.close()
-    return "user [" + username + "] added auccess"
+    result = handler.handle_new_user(username, password)
+    return result
 
 
-def get_user_from_db(username: str) -> list:
+def get_user_from_db(username: str, handler: user_db_handler) -> list:
     """
     Gets a user from the SQLite database.
     This function is susceptible to SQL injection.
@@ -24,17 +21,5 @@ def get_user_from_db(username: str) -> list:
     :param username: The username
     :return: The user information
     """
-    conn = sqlite3.connect('sample.db')
-    print(username)
-    curser = conn.execute(f"SELECT userName, password from USER where userName = '{username}'")
-    userInfo = []
-    for row in curser:
-        data = [row[0], row[1]]
-        userInfo.append(data)
-        print("userName = ", row[0])
-        print("password = ", row[1])
-    
-    print(userInfo)
-
-    conn.close()
-    return userInfo
+    result = handler.handle_get_user(username)
+    return result
